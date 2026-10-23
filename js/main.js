@@ -449,11 +449,20 @@ function initAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
 
-    document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.animate-in').forEach(el => {
+        // If element is already in viewport, show it immediately
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom >= 0) {
+            el.classList.add('visible');
+        } else {
+            observer.observe(el);
+        }
+    });
 }
 
 /* ===== PAGE LOADER ===== */
@@ -485,7 +494,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initLoader();
     initHeaderScroll();
     initMobileNav();
-    initAnimations();
     setActiveNav();
 
     // Page-specific init
@@ -494,4 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('catalog-grid')) initCatalogPage();
     if (document.getElementById('product-detail-container')) initProductDetailPage();
     if (document.getElementById('contact-form')) initContactForm();
+
+    // Init animations after content is rendered so observer can see populated elements
+    initAnimations();
 });
