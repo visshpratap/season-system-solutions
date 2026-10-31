@@ -1,104 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Browse the full Season System Solutions UPVC hardware catalog — sliding handles, casement handles, hinges, rollers, espags, locks, and accessories.">
-    <title>Products — Season System Solutions</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f1">
+  <meta name="description" content="Browse all Season System Solutions catalogue products by family or search by name and reference.">
+  <title>Products | Season System Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/products-data.js" defer></script>
+  <script src="js/main.js" defer></script>
 </head>
-
 <body>
-
-    <div class="page-loader" id="page-loader">
-        <div class="loader-spinner"></div>
-    </div>
-
-    <header class="header" id="header">
-        <nav class="nav">
-            <a href="index.html" class="nav-logo"><span>SEASON</span> <span class="logo-accent">SYSTEM</span></a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="products.html" class="active">Products</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
-                <a href="contact.html" class="nav-cta">Get Quote</a>
-            </div>
-            <button class="menu-toggle" id="menu-toggle"
-                aria-label="Toggle Menu"><span></span><span></span><span></span></button>
-        </nav>
-    </header>
-
-    <div class="mobile-nav-overlay" id="mobile-nav">
-        <a href="index.html">Home</a>
-        <a href="products.html" class="active">Products</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-    </div>
-
-    <section class="page-header">
-        <div class="container">
-            <h1>Our Product Catalog</h1>
-            <p>Browse 67+ premium UPVC hardware products across 10 categories — all backed by our 10‑year warranty.</p>
-        </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="topbar"><div class="container topbar-inner"><span>uPVC door &amp; window hardware</span><div class="topbar-links"><a href="tel:8130729201">81307 29201</a><span aria-hidden="true">·</span><a href="downloads/season-system-solutions-catalogue-web.pdf" download>Download catalogue <span aria-hidden="true">↗</span></a></div></div></div>
+  <header class="site-header" id="site-header"><div class="container nav-shell">
+    <a class="brand" href="index.html" aria-label="Season System Solutions home"><img src="images/season-system-mark.png" alt="" width="50" height="50"><span class="brand-copy"><strong>Season <i>System</i></strong><small>Solutions</small></span></a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation"><span></span><span></span></button>
+    <nav class="primary-nav" id="primary-navigation" aria-label="Primary navigation"><a href="index.html">Home</a><a href="products.html" aria-current="page">Products</a><a href="about.html">About</a><a href="contact.html">Contact</a><a class="button button-small button-dark nav-quote" href="contact.html">Request a quote <span aria-hidden="true">↗</span></a></nav>
+  </div></header>
+  <main id="main">
+    <section class="page-intro catalog-intro">
+      <div class="container page-intro-grid">
+        <div class="reveal"><p class="eyebrow"><span class="eyebrow-line"></span> The product index</p><h1>Hardware for<br><em>every detail.</em></h1></div>
+        <div class="page-intro-side reveal reveal-delay-1"><p>Browse the product families from the Season System catalogue. Search by name or catalogue reference, then contact us to discuss your selection.</p><a class="button button-outline" href="downloads/season-system-solutions-catalogue-web.pdf" download>Download catalogue <span aria-hidden="true">↓</span></a></div>
+      </div>
+      <div class="intro-bottom-rule"></div>
     </section>
-
-    <section class="section" style="padding-top:40px;">
-        <div class="container">
-            <div class="catalog-layout">
-                <aside class="filter-sidebar" id="filter-sidebar"></aside>
-                <main>
-                    <div class="results-bar">
-                        <span class="results-count" id="results-count"></span>
-                        <div class="search-box">
-                            <input type="text" id="search-input" placeholder="Search products..."
-                                aria-label="Search products">
-                        </div>
-                    </div>
-                    <div class="product-grid" id="catalog-grid"></div>
-                </main>
-            </div>
+    <section class="catalog-section section">
+      <div class="container">
+        <div class="catalog-toolbar">
+          <div class="filter-label"><span class="eyebrow-line"></span><span>Filter by family</span></div>
+          <div class="search-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><label class="sr-only" for="search-input">Search products</label><input id="search-input" type="search" placeholder="Search a product or reference" autocomplete="off"><button id="clear-search" type="button" aria-label="Clear search" hidden>×</button></div>
         </div>
+        <div class="filter-list" id="category-filters" role="group" aria-label="Filter by product family"></div>
+        <div class="catalog-results-bar"><p id="results-count" aria-live="polite">Loading catalogue…</p><a class="text-link" href="contact.html">Need help? Contact us <span aria-hidden="true">→</span></a></div>
+        <div class="product-grid catalog-grid" id="catalog-grid" aria-live="polite"></div>
+        <div class="empty-state" id="empty-state" hidden><span class="empty-symbol" aria-hidden="true">⌕</span><h2>No products found</h2><p>Try another product name, reference or family.</p><button class="button button-outline" id="reset-filters" type="button">Show all products</button></div>
+        <noscript><p class="noscript-note">Enable JavaScript to browse the searchable catalogue. The full product list is available in the <a href="downloads/season-system-solutions-catalogue-web.pdf">PDF catalogue</a>.</p></noscript>
+      </div>
     </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>SEASON <span class="logo-accent">SYSTEM</span></h3>
-                    <p>Premium UPVC hardware products and services across the Indian subcontinent.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="products.html">Products</a>
-                    <a href="about.html">About Us</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Top Categories</h4>
-                    <a href="products.html?category=Sliding+Handles">Sliding Handles</a>
-                    <a href="products.html?category=Casement+Handles">Casement Handles</a>
-                    <a href="products.html?category=Hinges">Hinges</a>
-                    <a href="products.html?category=Rollers">Rollers</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <a href="tel:8130729201">📞 8130729201</a>
-                    <a href="mailto:seasonsystemsolution@gmail.com">📧 Email Us</a>
-                    <a>📍 Gurgaon, Haryana</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>&copy; 2026 Season System Solutions. All rights reserved.</span>
-                <span>Premium UPVC Hardware Solutions</span>
-            </div>
-        </div>
-    </footer>
-
-    <script src="js/main.js"></script>
+  </main>
+  <footer class="site-footer"><div class="container footer-main">
+    <div class="footer-brand-block"><a class="brand brand-footer" href="index.html" aria-label="Season System Solutions home"><img src="images/season-system-mark.png" alt="" width="48" height="48"><span class="brand-copy"><strong>Season <i>System</i></strong><small>Solutions</small></span></a><p>uPVC door and window hardware, thoughtfully organised around the Season System catalogue.</p></div>
+    <div class="footer-column"><h2>Explore</h2><a href="products.html">All products</a><a href="about.html">About Season System</a><a href="downloads/season-system-solutions-catalogue-web.pdf" download>Product catalogue</a></div>
+    <div class="footer-column"><h2>Product families</h2><a href="products.html?category=Rollers">Rollers</a><a href="products.html?category=Sliding%20Handles">Sliding handles</a><a href="products.html?category=Accessories">Accessories</a></div>
+    <div class="footer-column footer-contact"><h2>Get in touch</h2><a href="tel:8130729201">81307 29201</a><a href="mailto:seasonsystemsolution@gmail.com">seasonsystemsolution@gmail.com</a><p>Khedki Daula, NH-8 Road,<br>Near Stella Industries, Gurgaon-122004,<br>Haryana</p></div>
+  </div><div class="container footer-bottom"><span>© <span data-year>2026</span> Season System Solutions</span><span>uPVC door &amp; window hardware</span><a href="contact.html">Contact us <span aria-hidden="true">↗</span></a></div></footer>
 </body>
-
 </html>
